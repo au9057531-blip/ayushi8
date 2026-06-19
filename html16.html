@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:black;
+}
+.firework{
+    position:absolute;
+    color:white;
+    font-size:40px;
+    animation:boom 1s linear infinite;
+}
+@keyframes boom{
+    from{
+        transform:scale(0);
+        opacity:1;
+    }
+    to{
+        transform:scale(3);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="firework">✨</div>
+
+<script>
+setInterval(()=>{
+ let f=document.createElement("div");
+ f.className="firework";
+ f.innerHTML="✨";
+ f.style.left=Math.random()*window.innerWidth+"px";
+ f.style.top=Math.random()*window.innerHeight+"px";
+ document.body.appendChild(f);
+
+ setTimeout(()=>f.remove(),1000);
+},200);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Love Calculator</title>
+<style>
+body{
+    text-align:center;
+    font-family:Arial;
+    padding-top:100px;
+    background:pink;
+}
+input{
+    padding:10px;
+    margin:10px;
+}
+button{
+    padding:10px 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Love Calculator ❤️</h1>
+
+<input type="text" id="name1" placeholder="Your Name">
+<input type="text" id="name2" placeholder="Partner Name">
+
+<br>
+
+<button onclick="calculate()">Check</button>
+
+<h2 id="result"></h2>
+
+<script>
+function calculate(){
+    let score = Math.floor(Math.random()*41)+60;
+    document.getElementById("result").innerHTML =
+    "Compatibility: " + score + "% ❤️";
+}
+</script>
+
+</body>
+</html>

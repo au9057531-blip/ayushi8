@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dice Roller</title>
+<style>
+body{
+    text-align:center;
+    font-family:Arial;
+    margin-top:100px;
+}
+#dice{
+    font-size:100px;
+}
+</style>
+</head>
+<body>
+
+<h1>Dice Roller</h1>
+
+<div id="dice">🎲</div>
+
+<button onclick="rollDice()">Roll</button>
+
+<script>
+function rollDice(){
+    let num = Math.floor(Math.random()*6)+1;
+    document.getElementById("dice").innerHTML = num;
+}
+</script>
+
+</body>
+</html>

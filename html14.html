@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    text-align:center;
+    margin-top:100px;
+    font-family:Arial;
+}
+#time{
+    font-size:60px;
+}
+button{
+    padding:10px 20px;
+    margin:5px;
+}
+</style>
+</head>
+<body>
+
+<div id="time">00:00:00</div>
+
+<button onclick="start()">Start</button>
+<button onclick="stop()">Stop</button>
+<button onclick="reset()">Reset</button>
+
+<script>
+let sec=0;
+let timer;
+
+function start(){
+ timer=setInterval(()=>{
+ sec++;
+ let h=Math.floor(sec/3600);
+ let m=Math.floor((sec%3600)/60);
+ let s=sec%60;
+
+ document.getElementById("time").innerHTML=
+ `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+ },1000);
+}
+
+function stop(){
+ clearInterval(timer);
+}
+
+function reset(){
+ clearInterval(timer);
+ sec=0;
+ document.getElementById("time").innerHTML="00:00:00";
+}
+</script>
+
+</body>
+</html>

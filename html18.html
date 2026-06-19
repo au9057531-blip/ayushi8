@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+ background:black;
+ color:lime;
+ font-family:monospace;
+ padding:20px;
+}
+</style>
+</head>
+<body>
+
+<div id="screen"></div>
+
+<script>
+let txt=[
+"Connecting...",
+"Accessing database...",
+"Decrypting files...",
+"Access Granted!"
+];
+
+let i=0;
+
+setInterval(()=>{
+ if(i<txt.length){
+  screen.innerHTML+=txt[i]+"<br>";
+  i++;
+ }
+},1000);
+</script>
+
+</body>
+</html>
