@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do list</title>
+  <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+  <div class="page">
+  <div class="main">
+    <h1>To Do List</h1>
+    <input id="input" type="text" placeholder="enter your task">
+    <button id="btn">Add</button>
+    <ol type="1" id="list"></ol>
+  </div>
+  </div>
+
+  <script>
+    const input = document.querySelector('#input');
+    const list = document.querySelector('#list');
+    const btn = document.querySelector('#btn');
+
+    let todolist = [];
+
+    const addLocal = (todo) => {
+      localStorage.setItem('tododata', JSON.stringify(todo));
+
+    };
+
+    const getTodo = () => {
+      const data = JSON.parse(localStorage.getItem('tododata')) || [];
+      return data.map(item =>
+        typeof item === "string" ? { text: item, checked: false } : item
+      );
+    };
+
+
+    const render = () => {
+      list.innerHTML = "";
+      todolist.forEach((item, index) => {
+        const li = document.createElement("li");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = item.checked;
+
+        checkbox.addEventListener("change", () => {
+          todolist[index].checked = checkbox.checked;
+          addLocal(todolist);
+        });
+
+        const span = document.createElement("span");
+        span.textContent = item.text;
+
+        const removebtn = document.createElement('button');
+        removebtn.innerText = "Remove";
+        removebtn.className = "remove-btn";
+
+        removebtn.addEventListener('click', () => {
+          todolist.splice(index, 1);
+          addLocal(todolist);
+          render();
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(removebtn);
+        list.appendChild(li);
+      });
+    };
+
+
+    todolist = getTodo();
+    render();
+
+
+
+    btn.addEventListener('click', () => {
+
+
+      let newTodo = input.value.trim();
+      if (newTodo.length === 0) return;
+      const isDuplicate = todolist.some(
+        (todo) => todo.text.toLowerCase() === newTodo.toLowerCase()
+      );
+
+      if (isDuplicate) {
+        alert("Task Already exist");
+        input.value = "";
+        return;
+      }
+      todolist.push({ text: newTodo, checked: false });
+      addLocal(todolist);
+      render();
+      input.value = "";
+    });
+
+
+
+  </script>
+  <footer>
+    Made by Deepak
+  </footer>
+</body>
+
+</html>
